@@ -1,0 +1,25 @@
+name: 'Action in Action'
+description: 'Runs a specified action with pre and post steps'
+
+inputs:
+  action:
+    description: 'The action to run'
+    required: true
+  pre:
+    description: 'The pre-step to run'
+    required: false
+  post:
+    description: 'The post-step to run'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Pre Step
+      run: ${{ github.event.inputs.pre }}
+
+    - name: Run Specified Action
+      uses: ${{ inputs.action }}
+
+    - name: Post Step
+      run: ${{ github.event.inputs.post }}
