@@ -20,7 +20,9 @@ runs:
       run: ${{ inputs.pre }}
 
     - name: Run Specified Action
-      uses: ${{ inputs.action }}
+      shell: bash
+      run: echo "Running ${{ inputs.action }}"
+      # uses: ${{ inputs.action }}
 
     - name: Post Step
       shell: bash
