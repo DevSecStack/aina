@@ -16,12 +16,17 @@ runs:
   using: 'composite'
   steps:
     - name: Pre Step
+      if: ${{ inputs.pre != '' }}
       shell: bash
       run: ${{ inputs.pre }}
 
     - name: Run Specified Action
-      uses: ${{ inputs.action }}
+      shell: bash
+      run: |
+        # Running ${{ inputs.action }}...
+        echo "::set-output name=action_to_run::${{ inputs.action }}"
 
     - name: Post Step
+      if: ${{ inputs.post != '' }}
       shell: bash
       run: ${{ inputs.post }}
