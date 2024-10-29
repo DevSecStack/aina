@@ -16,10 +16,12 @@ runs:
   using: 'composite'
   steps:
     - name: Pre Step
-      run: ${{ github.event.inputs.pre }}
+      shell: bash
+      run: ${{ inputs.pre }}
 
     - name: Run Specified Action
       uses: ${{ inputs.action }}
 
     - name: Post Step
-      run: ${{ github.event.inputs.post }}
+      shell: bash
+      run: ${{ inputs.post }}
