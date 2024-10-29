@@ -24,7 +24,8 @@ runs:
       shell: bash
       run: |
         # Running ${{ inputs.action }}...
-        echo "::set-output name=action_to_run::${{ inputs.action }}"
+        echo "action_to_run=${{ inputs.action }}" >> $GITHUB_OUTPUT
+        echo $action_to_run
 
     - name: Post Step
       if: ${{ inputs.post != '' }}
